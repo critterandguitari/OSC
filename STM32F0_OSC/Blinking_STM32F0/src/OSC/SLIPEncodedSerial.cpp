@@ -36,8 +36,8 @@ bool SLIPEncodedSerial::endofPacket()
         if(uart2_available())
         {
             //uint8_t c =serial->peek();
-            //uint8_t c = uart2_peek();
-            uint8_t c = peek();
+            uint8_t c = uart2_peek();
+            //uint8_t c = peek();
             if(c==eot)
             {
                // serial->read(); // throw it on the floor
@@ -61,8 +61,8 @@ back:
 	if(rstate==CHAR)
 	{
 	//	uint8_t c =serial->peek();
-     //   uint8_t c =uart2_peek();
-        uint8_t c = peek();
+        uint8_t c =uart2_peek();
+        //uint8_t c = peek();
 		if(c==slipesc)
 		{
 			rstate = SLIPESC;
@@ -84,8 +84,8 @@ back:
 	else if(rstate==FIRSTEOT)
 	{
 		//if(serial->peek()==eot)
-	    //if(uart2_peek()==eot)
-	    if(peek()==eot)
+	    if(uart2_peek()==eot)
+	    //if(peek()==eot)
 		{
 			rstate = SECONDEOT;
             //serial->read(); // throw it on the floor
